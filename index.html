@@ -1,0 +1,1633 @@
+<meta name="theme-color" content="#FFFDF0">
+<title>Flores para Yessi</title>
+
+<!-- Así se ve la tarjeta cuando pegas el link en WhatsApp -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="Para mi Yessi 🌻">
+<meta property="og:description" content="Tus flores amarillas de este 21, desde Lima.">
+<meta property="og:locale" content="es_PE">
+<meta name="description" content="Tus flores amarillas de este 21, desde Lima.">
+<meta property="og:url" content="https://flores-yessi.pages.dev/">
+<meta property="og:image" content="https://flores-yessi.pages.dev/portada.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Un girasol amarillo junto a las palabras: Para mi Yessi.">
+<meta name="twitter:card" content="summary_large_image">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap">
+
+<style>
+/* ============================================================
+   Para mi Yessi — 21 de septiembre, Día de las Flores Amarillas
+   Un solo mundo visual: marfil cálido + girasol. Mobile-first.
+   ============================================================ */
+
+:root{
+  color-scheme: light;
+
+  /* Fondos */
+  --marfil:#FFFDF0;
+  --crema:#FEF3C7;
+  --miel:#FDE68A;
+
+  /* Acentos */
+  --girasol:#F59E0B;
+  --dorado:#D97706;
+  --ocre:#B45309;
+  --olivo:#65A30D;
+
+  /* Tinta: café cálido, nunca gris puro */
+  --tinta:#4A3520;
+  --tinta-media:#7C6142;
+  --tinta-suave:#9A8467;
+
+  /* Vidrio y bordes */
+  --vidrio:rgba(255,253,240,.62);
+  --vidrio-firme:rgba(255,253,240,.84);
+  --borde:rgba(180,83,9,.20);
+  --borde-vivo:rgba(217,119,6,.42);
+
+  --sombra-suave:0 14px 34px -20px rgba(146,64,14,.45);
+  --sombra-media:0 22px 48px -24px rgba(146,64,14,.55);
+
+  --radio:22px;
+  --radio-sm:14px;
+
+  --t-xs:.72rem;
+  --t-sm:.86rem;
+  --t-base:1rem;
+  --t-lg:1.12rem;
+}
+
+*,*::before,*::after{box-sizing:border-box}
+
+html{-webkit-text-size-adjust:100%}
+
+body{
+  margin:0;
+  min-height:100svh;
+  font-family:'Plus Jakarta Sans',system-ui,-apple-system,'Segoe UI',sans-serif;
+  font-size:var(--t-base);
+  line-height:1.65;
+  color:var(--tinta);
+  background:
+    radial-gradient(125% 72% at 50% -12%, #FFFFFF 0%, var(--marfil) 36%, var(--crema) 72%, var(--miel) 100%)
+    no-repeat fixed;
+  background-color:var(--marfil);
+  overflow-x:hidden;
+  -webkit-tap-highlight-color:transparent;
+}
+
+/* Lluvia de pétalos ------------------------------------------ */
+#lienzo{position:fixed;inset:0;z-index:0;pointer-events:none}
+
+/* Contenedor -------------------------------------------------- */
+.pagina{
+  position:relative;
+  z-index:1;
+  width:min(100% - 2.2rem, 30rem);
+  margin-inline:auto;
+  padding-block:clamp(1.6rem,7vw,2.8rem) 3rem;
+  display:flex;
+  flex-direction:column;
+  gap:clamp(1.7rem,6vw,2.4rem);
+}
+
+/* Botón de música --------------------------------------------- */
+.sonido{
+  position:fixed;
+  top:max(.9rem, env(safe-area-inset-top));
+  right:.9rem;
+  z-index:20;
+  width:46px;height:46px;
+  display:grid;place-items:center;
+  border:1px solid var(--borde-vivo);
+  border-radius:50%;
+  background:var(--vidrio-firme);
+  -webkit-backdrop-filter:blur(14px) saturate(1.3);
+  backdrop-filter:blur(14px) saturate(1.3);
+  box-shadow:var(--sombra-suave);
+  color:var(--ocre);
+  cursor:pointer;
+  transition:transform .28s cubic-bezier(.2,.9,.3,1.3), box-shadow .28s, background .28s;
+}
+.sonido:active{transform:scale(.9)}
+.sonido[aria-pressed="true"]{
+  color:#FFFBEB;
+  background:linear-gradient(150deg,var(--girasol),var(--dorado));
+  border-color:transparent;
+  box-shadow:0 10px 26px -10px rgba(217,119,6,.75);
+}
+.sonido svg{width:21px;height:21px;display:block}
+.sonido[aria-pressed="true"] .onda{animation:pulsoOnda 1.7s ease-in-out infinite}
+@keyframes pulsoOnda{0%,100%{opacity:1}50%{opacity:.3}}
+
+/* Cabecera ---------------------------------------------------- */
+.intro{text-align:center;display:flex;flex-direction:column;align-items:center;gap:1rem}
+
+h1{
+  margin:0;
+  font-family:'Playfair Display',Georgia,serif;
+  font-weight:600;
+  font-size:clamp(2.5rem,12vw,3.4rem);
+  line-height:1.05;
+  letter-spacing:-.015em;
+  text-wrap:balance;
+  color:var(--tinta);
+  animation:entrar .8s .12s both;
+}
+h1 em{
+  font-style:italic;
+  font-weight:500;
+  background:linear-gradient(100deg,var(--dorado),var(--girasol) 55%,var(--ocre));
+  -webkit-background-clip:text;
+  background-clip:text;
+  color:transparent;
+}
+h1 .girasol-emoji{display:inline-block;animation:girar 11s linear infinite}
+@keyframes girar{to{transform:rotate(360deg)}}
+
+/* Ruta Lima → Chachapoyas ------------------------------------- */
+.ruta{
+  display:flex;align-items:center;gap:.55rem;
+  width:100%;
+  padding:.7rem .95rem;
+  border:1px solid var(--borde);
+  border-radius:var(--radio-sm);
+  background:var(--vidrio);
+  -webkit-backdrop-filter:blur(12px);
+  backdrop-filter:blur(12px);
+  box-shadow:var(--sombra-suave);
+  animation:entrar .8s .2s both;
+}
+.ciudad{
+  margin:0;
+  font-size:var(--t-xs);
+  font-weight:700;
+  letter-spacing:.09em;
+  text-transform:uppercase;
+  color:var(--tinta);
+  white-space:nowrap;
+}
+.ciudad--fin{text-align:right}
+.trazo{flex:1;height:34px;overflow:visible}
+.trazo .via{stroke:var(--borde-vivo);stroke-width:1.6;stroke-dasharray:2 5;stroke-linecap:round;fill:none}
+.trazo .nodo{fill:var(--dorado)}
+.trazo .halo{fill:rgba(245,158,11,.16)}
+.trazo .avion{fill:var(--ocre)}
+
+.km{
+  margin:0;
+  font-size:var(--t-sm);
+  line-height:1.7;
+  color:var(--tinta-media);
+  text-wrap:balance;
+  animation:entrar .8s .28s both;
+}
+.km b{color:var(--ocre);font-weight:700}
+
+/* Ramo -------------------------------------------------------- */
+.escena{
+  position:relative;
+  isolation:isolate;
+  display:flex;flex-direction:column;align-items:center;gap:.6rem;
+  cursor:pointer;
+  animation:entrar .9s .3s both;
+}
+/* la luz del sol detrás del ramo: le da fondo y hace que el amarillo cante */
+.escena::before{
+  content:"";
+  position:absolute;
+  z-index:0;
+  top:-4%;
+  left:50%;
+  width:min(112%,25rem);
+  aspect-ratio:1;
+  transform:translateX(-50%);
+  pointer-events:none;
+  background:radial-gradient(circle,
+    rgba(255,251,235,.85) 0%,
+    rgba(251,191,36,.34) 30%,
+    rgba(245,158,11,.14) 52%,
+    transparent 70%);
+  animation:sol 9s 1.2s ease-in-out infinite both;
+}
+@keyframes sol{
+  0%,100%{opacity:.75;transform:translateX(-50%) scale(1)}
+  50%{opacity:1;transform:translateX(-50%) scale(1.07)}
+}
+/* escenario 3D: el ramo se inclina con el dedo y se mece solo */
+.escenario{
+  position:relative;
+  z-index:1;
+  width:min(100%,19.5rem);
+  perspective:900px;
+}
+.inclinacion{
+  transform-style:preserve-3d;
+  will-change:transform;
+  animation:vaiven 12s ease-in-out infinite;
+}
+@keyframes vaiven{
+  0%,100%{transform:rotateX(calc(2deg + var(--rx,0deg))) rotateY(calc(-4.5deg + var(--ry,0deg)))}
+  50%{transform:rotateX(calc(-2deg + var(--rx,0deg))) rotateY(calc(4.5deg + var(--ry,0deg)))}
+}
+
+.ramo{
+  width:100%;
+  height:auto;
+  display:block;
+  overflow:visible;
+  filter:drop-shadow(0 24px 22px rgba(120,53,15,.28));
+}
+.escena.sacudir .ramo{animation:sacudida .7s ease-out}
+@keyframes sacudida{
+  0%,100%{transform:rotate(0) scale(1)}
+  22%{transform:rotate(-2.4deg) scale(1.035)}
+  55%{transform:rotate(1.8deg) scale(1.02)}
+  80%{transform:rotate(-.7deg) scale(1.005)}
+}
+
+.flor{
+  transform-box:fill-box;
+  transform-origin:center;
+  animation:respirar 5.6s 3.4s ease-in-out infinite;
+}
+.flor--b{animation-duration:6.5s;animation-delay:3.7s}
+.flor--c{animation-duration:7.2s;animation-delay:3.9s}
+@keyframes respirar{
+  0%,100%{transform:scale(1) rotate(0deg)}
+  50%{transform:scale(1.04) rotate(.9deg)}
+}
+
+/* el anillo de atrás va más oscuro: da la profundidad */
+.anillo--atras{filter:brightness(.78) saturate(1.05)}
+
+.petalo{
+  transform-box:fill-box;
+  transform-origin:50% 100%;
+  animation:brotar 1s cubic-bezier(.16,.9,.24,1.06) backwards;
+}
+@keyframes brotar{
+  from{transform:scale(.04) rotate(-11deg);opacity:0}
+  55%{opacity:1}
+  to{transform:scale(1) rotate(0);opacity:1}
+}
+
+.disco{
+  transform-box:fill-box;
+  transform-origin:center;
+  animation:asomarDisco .75s cubic-bezier(.2,.9,.3,1.25) backwards;
+}
+@keyframes asomarDisco{from{opacity:0;transform:scale(.15)}to{opacity:1;transform:scale(1)}}
+
+.semilla{
+  transform-box:fill-box;
+  transform-origin:center;
+  animation:asomar .5s ease-out backwards;
+}
+@keyframes asomar{from{opacity:0;transform:scale(.3)}to{opacity:1;transform:scale(1)}}
+
+.tallo{animation:crecer 1.5s cubic-bezier(.3,.8,.3,1) backwards}
+@keyframes crecer{from{stroke-dashoffset:330}to{stroke-dashoffset:0}}
+
+.hoja{
+  transform-box:fill-box;
+  transform-origin:100% 50%;
+  animation:desplegar .85s .7s cubic-bezier(.2,.9,.3,1.15) backwards,
+            mecer 6.5s 1.7s ease-in-out infinite;
+}
+.hoja--d{
+  transform-origin:0% 50%;
+  animation-delay:.92s, 2.1s;
+}
+@keyframes desplegar{
+  from{opacity:0;transform:scale(.1,.5) rotate(-16deg)}
+  to{opacity:1;transform:scale(1) rotate(0)}
+}
+@keyframes mecer{0%,100%{transform:rotate(0)}50%{transform:rotate(3.5deg)}}
+
+.pista{
+  position:relative;
+  z-index:1;
+  margin:0;
+  font-size:var(--t-xs);
+  font-weight:600;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+  color:var(--tinta-suave);
+  animation:respiroTexto 3.4s ease-in-out infinite;
+}
+@keyframes respiroTexto{0%,100%{opacity:.5}50%{opacity:1}}
+
+/* Sobre y carta ------------------------------------------------ */
+.correo{display:flex;flex-direction:column;gap:1.1rem;animation:entrar .9s .38s both}
+
+.cta{
+  width:100%;
+  padding:1.05rem 1.3rem;
+  border:0;
+  border-radius:999px;
+  font-family:inherit;
+  font-size:var(--t-lg);
+  font-weight:700;
+  color:#FFFBEB;
+  background:linear-gradient(135deg,#FBBF24 0%,var(--girasol) 42%,var(--dorado) 100%);
+  box-shadow:0 16px 32px -14px rgba(217,119,6,.85), inset 0 1px 0 rgba(255,255,255,.45);
+  cursor:pointer;
+  transition:transform .26s cubic-bezier(.2,.9,.3,1.3), box-shadow .26s;
+}
+.cta:active{transform:translateY(2px) scale(.985);box-shadow:0 8px 18px -12px rgba(217,119,6,.9)}
+.cta .brillo-cta{display:inline-block;animation:latido 2.4s ease-in-out infinite}
+@keyframes latido{0%,100%{transform:scale(1)}45%{transform:scale(1.18)}}
+
+/* --- el sobre lacrado --- */
+.pliegue-sobre{
+  display:grid;
+  grid-template-rows:1fr;
+  transition:grid-template-rows .65s cubic-bezier(.3,.8,.2,1), opacity .5s ease;
+}
+/* el hueco de arriba deja respirar a la solapa cuando se abre;
+   el margen negativo evita que ese hueco abra un salto en la página */
+.pliegue-sobre > div{overflow:hidden;padding-top:34px;margin-top:-34px}
+.correo.abierta .pliegue-sobre{grid-template-rows:0fr;opacity:0;transition-delay:.55s}
+
+.sobre{
+  position:relative;
+  aspect-ratio:1.62/1;
+  perspective:900px;
+}
+.cuerpo-sobre{
+  position:absolute;inset:0;
+  padding:1.1rem 1.2rem;
+  display:flex;flex-direction:column;justify-content:flex-end;
+  border:1px solid var(--borde-vivo);
+  border-radius:var(--radio-sm);
+  background:linear-gradient(165deg,#FFFDF5,#FEF3C7 68%,#FDE68A);
+  box-shadow:var(--sombra-media);
+  overflow:hidden;
+}
+.cuerpo-sobre::after{
+  content:"";
+  position:absolute;inset:0;
+  pointer-events:none;
+  background:
+    linear-gradient(to bottom right, transparent 49.4%, rgba(180,83,9,.13) 49.7%, transparent 50%),
+    linear-gradient(to bottom left, transparent 49.4%, rgba(180,83,9,.13) 49.7%, transparent 50%);
+}
+.destino{
+  margin:0;
+  font-family:'Playfair Display',Georgia,serif;
+  font-size:1.2rem;font-weight:600;line-height:1.25;
+}
+.destino span{
+  display:block;
+  font-family:'Plus Jakarta Sans',sans-serif;
+  font-size:var(--t-xs);
+  font-weight:600;
+  letter-spacing:.1em;
+  text-transform:uppercase;
+  color:var(--tinta-suave);
+}
+.estampilla{
+  position:absolute;top:.9rem;right:.9rem;z-index:3;
+  width:50px;height:58px;
+  display:grid;place-content:center;gap:2px;
+  text-align:center;
+  border-radius:4px;
+  border:2px dashed rgba(180,83,9,.4);
+  background:repeating-linear-gradient(45deg,#FEF3C7,#FEF3C7 6px,#FDE68A 6px,#FDE68A 12px);
+  font-size:1.35rem;line-height:1;
+  transform:rotate(3.5deg);
+}
+.estampilla small{font-size:.5rem;font-weight:700;letter-spacing:.09em;color:var(--ocre)}
+.solapa{
+  position:absolute;top:0;left:0;right:0;z-index:4;
+  height:58%;
+  clip-path:polygon(0 0,100% 0,50% 100%);
+  background:linear-gradient(175deg,#FDE68A,#FBBF24);
+  border-radius:var(--radio-sm) var(--radio-sm) 0 0;
+  transform-origin:top center;
+  transform:rotateX(0deg);
+  transition:transform .85s cubic-bezier(.5,-.25,.35,1.2), z-index 0s .42s;
+}
+.correo.abierta .solapa{transform:rotateX(-102deg);z-index:1}
+.sello{
+  position:absolute;z-index:5;
+  top:calc(58% - 21px);left:50%;margin-left:-21px;
+  width:42px;height:42px;
+  display:grid;place-items:center;
+  border-radius:50%;
+  background:radial-gradient(circle at 34% 30%,#DC7C0B,var(--ocre) 60%,#7C2D12);
+  box-shadow:0 5px 12px -4px rgba(124,45,18,.7), inset 0 1px 2px rgba(255,255,255,.35);
+  font-family:'Playfair Display',Georgia,serif;
+  font-size:1.2rem;font-weight:700;color:#FFF7E0;
+  transition:transform .45s cubic-bezier(.4,-.5,.5,1.6), opacity .35s .1s;
+}
+.correo.abierta .sello{transform:scale(1.5) rotate(38deg) translateY(16px);opacity:0}
+
+/* --- la carta --- */
+.pliegue-carta{
+  display:grid;
+  grid-template-rows:0fr;
+  transition:grid-template-rows .95s cubic-bezier(.22,.85,.2,1);
+}
+.pliegue-carta > div{overflow:hidden}
+.correo.abierta .pliegue-carta{grid-template-rows:1fr;transition-delay:.7s}
+
+.carta{
+  position:relative;
+  margin:0;
+  padding:1.7rem 1.45rem 1.5rem;
+  border:1px solid var(--borde-vivo);
+  border-radius:var(--radio);
+  background:
+    linear-gradient(to bottom,rgba(253,230,138,.4),transparent 12%),
+    linear-gradient(to top,rgba(253,230,138,.45),transparent 14%),
+    radial-gradient(130% 90% at 15% 0%,#FFFEF8,#FFFBEB 55%,#FEF6DA 100%);
+  box-shadow:var(--sombra-media), inset 0 0 40px rgba(217,119,6,.07);
+  opacity:0;
+  transform:translateY(-14px) scale(.985);
+  transition:opacity .6s .22s ease, transform .75s .22s cubic-bezier(.2,.85,.25,1);
+}
+.correo.abierta .carta{opacity:1;transform:none;transition-delay:.95s}
+
+/* la carta venía doblada en tres dentro del sobre */
+.carta::before,.carta::after{
+  content:"";
+  position:absolute;left:0;right:0;height:1px;
+  pointer-events:none;
+  background:linear-gradient(90deg,transparent,rgba(180,83,9,.2) 12%,rgba(180,83,9,.2) 88%,transparent);
+  box-shadow:0 1px 3px rgba(146,64,14,.08);
+}
+.carta::before{top:33.3%}
+.carta::after{top:66.6%}
+
+.encabezado{
+  margin:0 0 1rem;
+  font-family:'Playfair Display',Georgia,serif;
+  font-size:1.6rem;font-weight:600;font-style:italic;
+  color:var(--ocre);
+}
+.carta p{
+  margin:0 0 .95rem;
+  font-size:1.01rem;
+  line-height:1.78;
+  max-width:38ch;
+  color:var(--tinta);
+}
+.carta p:last-of-type{margin-bottom:0}
+.carta strong{color:var(--ocre);font-weight:600}
+
+/* remate de la carta: un girasol chiquito entre dos filetes */
+.remate{
+  display:flex;
+  align-items:center;
+  gap:.75rem;
+  margin:1.5rem 0 1.1rem;
+}
+.remate i{
+  flex:1;
+  height:1px;
+  background:linear-gradient(90deg,transparent,var(--borde-vivo));
+}
+.remate i:last-child{background:linear-gradient(90deg,var(--borde-vivo),transparent)}
+.remate svg{flex:none;width:26px;height:26px;display:block}
+.firma{
+  margin:0;
+  font-family:'Playfair Display',Georgia,serif;
+  font-style:italic;
+  font-size:1.08rem;
+  line-height:1.5;
+  color:var(--dorado);
+  text-align:right;
+}
+.firma span{
+  display:block;
+  margin-top:.35rem;
+  font-family:'Plus Jakarta Sans',sans-serif;
+  font-style:normal;
+  font-size:var(--t-xs);
+  font-weight:600;
+  letter-spacing:.11em;
+  text-transform:uppercase;
+  color:var(--tinta-suave);
+}
+
+/* Contador de cariño ------------------------------------------- */
+.carino{
+  display:flex;flex-direction:column;align-items:center;gap:.7rem;
+  padding:1.3rem 1.1rem;
+  border:1px solid var(--borde);
+  border-radius:var(--radio);
+  background:var(--vidrio);
+  -webkit-backdrop-filter:blur(12px);
+  backdrop-filter:blur(12px);
+  box-shadow:var(--sombra-suave);
+  text-align:center;
+  animation:entrar .9s .45s both;
+}
+.btn-corazon{
+  display:inline-flex;align-items:center;gap:.6rem;
+  padding:.8rem 1.3rem;
+  border:1px solid var(--borde-vivo);
+  border-radius:999px;
+  background:var(--vidrio-firme);
+  font-family:inherit;font-size:var(--t-base);font-weight:600;
+  color:var(--ocre);
+  cursor:pointer;
+  transition:transform .22s cubic-bezier(.2,.9,.3,1.5), box-shadow .22s;
+}
+.btn-corazon:active{transform:scale(.94)}
+.btn-corazon.palpita{animation:palpitar .5s ease-out}
+@keyframes palpitar{0%{transform:scale(1)}35%{transform:scale(1.09)}100%{transform:scale(1)}}
+.marcador{
+  min-width:2.3ch;
+  padding:.1rem .5rem;
+  border-radius:999px;
+  background:linear-gradient(140deg,var(--girasol),var(--dorado));
+  color:#FFFBEB;
+  font-variant-numeric:tabular-nums;
+  font-weight:700;
+}
+/* los corazones se van quedando en la tarjeta */
+.hilera{
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:center;
+  gap:.2rem .3rem;
+  max-width:16rem;
+  line-height:1;
+}
+.hilera:empty{display:none}
+.hilera span{
+  font-size:.95rem;
+  animation:brotarCorazon .5s cubic-bezier(.2,.9,.3,1.7) backwards;
+}
+.hilera .mas{
+  align-self:center;
+  font-family:'Plus Jakarta Sans',sans-serif;
+  font-size:var(--t-xs);
+  font-weight:700;
+  color:var(--dorado);
+  font-variant-numeric:tabular-nums;
+}
+@keyframes brotarCorazon{
+  from{opacity:0;transform:scale(0) translateY(8px)}
+  to{opacity:1;transform:none}
+}
+
+.nota{margin:0;font-size:var(--t-xs);color:var(--tinta-suave);min-height:1.7em}
+
+/* Utilidades ----------------------------------------------------- */
+@keyframes entrar{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
+
+:focus-visible{outline:2.5px solid var(--dorado);outline-offset:3px;border-radius:8px}
+
+@media (prefers-reduced-motion: reduce){
+  *,*::before,*::after{
+    animation-duration:.01ms !important;
+    animation-iteration-count:1 !important;
+    transition-duration:.2s !important;
+  }
+  .flor,.hoja,.inclinacion,h1 .girasol-emoji,.pista,.cta .brillo-cta{animation:none !important}
+}
+</style>
+
+<canvas id="lienzo" aria-hidden="true"></canvas>
+
+<button class="sonido" id="btnSonido" type="button" aria-pressed="false" aria-label="Reproducir música de fondo">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+    <path d="M4 9.5h3.2L12 5.4v13.2L7.2 14.5H4z" fill="currentColor" fill-opacity=".18"></path>
+    <g id="ondas" class="onda">
+      <path d="M15.6 9.2a4 4 0 0 1 0 5.6"></path>
+      <path d="M18.2 6.8a7.6 7.6 0 0 1 0 10.4"></path>
+    </g>
+    <path id="mudo" d="M16 9.5l5 5m0-5l-5 5"></path>
+  </svg>
+</button>
+
+<div class="pagina">
+
+  <!-- Cabecera ------------------------------------------------- -->
+  <header class="intro">
+    <h1>Para mi <em>Yessi</em> <span class="girasol-emoji">🌻</span></h1>
+
+    <div class="ruta">
+      <p class="ciudad">Lima</p>
+
+      <svg class="trazo" viewBox="0 0 130 34" preserveAspectRatio="none" aria-hidden="true">
+        <path id="arco" class="via" d="M6,26 Q65,-4 124,18"></path>
+        <circle class="halo" cx="6" cy="26" r="7"></circle>
+        <circle class="nodo" cx="6" cy="26" r="3.2"></circle>
+        <circle class="halo" cx="124" cy="18" r="7"></circle>
+        <circle class="nodo" cx="124" cy="18" r="3.2"></circle>
+        <g class="avion">
+          <path d="M5,0 L-4.5,-3.4 L-2,0 L-4.5,3.4 Z"></path>
+          <animateMotion dur="7s" repeatCount="indefinite" rotate="auto" calcMode="linear">
+            <mpath href="#arco" xlink:href="#arco"></mpath>
+          </animateMotion>
+        </g>
+      </svg>
+
+      <p class="ciudad ciudad--fin">Chachapoyas</p>
+    </div>
+
+    <p class="km">Más de <b>1,200 km</b> entre nosotros. Ninguno alcanzó para dejarte hoy sin tus flores.</p>
+  </header>
+
+  <!-- Ramo ----------------------------------------------------- -->
+  <section class="escena" id="escena" tabindex="0" aria-label="Ramo de flores amarillas: tócalo para soltar destellos">
+    <div class="escenario">
+      <div class="inclinacion" id="inclinacion">
+        <svg class="ramo" viewBox="0 0 300 320" role="img" aria-label="Un ramo de tres girasoles amarillos con tallos verdes">
+          <defs>
+            <!-- cara iluminada del pétalo -->
+            <linearGradient id="gPetalo" x1="0" y1="1" x2="0" y2="0">
+              <stop offset="0" stop-color="#C2610A"></stop>
+              <stop offset=".3" stop-color="#F59E0B"></stop>
+              <stop offset=".72" stop-color="#FBBF24"></stop>
+              <stop offset="1" stop-color="#FDE68A"></stop>
+            </linearGradient>
+            <!-- medio pétalo en sombra: lo que le da grosor -->
+            <linearGradient id="gVolumen" x1="0" y1="0" x2="1" y2="0">
+              <stop offset="0" stop-color="#78350F" stop-opacity="0"></stop>
+              <stop offset="1" stop-color="#7C2D12" stop-opacity=".42"></stop>
+            </linearGradient>
+            <!-- nervadura clara del centro del pétalo -->
+            <linearGradient id="gNervio" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0" stop-color="#FFFDF0" stop-opacity=".08"></stop>
+              <stop offset=".45" stop-color="#FFFDF0" stop-opacity=".52"></stop>
+              <stop offset="1" stop-color="#FFFDF0" stop-opacity="0"></stop>
+            </linearGradient>
+            <radialGradient id="gCentro" cx="36%" cy="30%">
+              <stop offset="0" stop-color="#B45309"></stop>
+              <stop offset=".5" stop-color="#78350F"></stop>
+              <stop offset="1" stop-color="#4A2108"></stop>
+            </radialGradient>
+            <!-- domo: oscurece el borde del disco para que no se vea plano -->
+            <radialGradient id="gDomo">
+              <stop offset=".45" stop-color="#2A1203" stop-opacity="0"></stop>
+              <stop offset=".84" stop-color="#2A1203" stop-opacity=".42"></stop>
+              <stop offset="1" stop-color="#1F0D02" stop-opacity=".78"></stop>
+            </radialGradient>
+            <radialGradient id="gLustre">
+              <stop offset="0" stop-color="#FFF7E0" stop-opacity=".55"></stop>
+              <stop offset="1" stop-color="#FFF7E0" stop-opacity="0"></stop>
+            </radialGradient>
+            <linearGradient id="gTallo" x1="0" y1="0" x2="1" y2="0">
+              <stop offset="0" stop-color="#3F6212"></stop>
+              <stop offset=".45" stop-color="#65A30D"></stop>
+              <stop offset="1" stop-color="#365314"></stop>
+            </linearGradient>
+            <linearGradient id="gHoja" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0" stop-color="#84CC16"></stop>
+              <stop offset="1" stop-color="#3F6212"></stop>
+            </linearGradient>
+
+            <!-- un pétalo con volumen: base + sombra lateral + luz central -->
+            <g id="petalo3d">
+              <path d="M0,-22 C11,-42 13,-70 0,-96 C-13,-70 -11,-42 0,-22 Z"
+                    fill="url(#gPetalo)" stroke="rgba(120,45,18,.22)" stroke-width=".9"></path>
+              <path d="M0,-22 C11,-42 13,-70 0,-96 L0,-22 Z" fill="url(#gVolumen)"></path>
+              <path d="M0,-27 C3.4,-46 4,-70 0,-90 C-4,-70 -3.4,-46 0,-27 Z" fill="url(#gNervio)"></path>
+            </g>
+          </defs>
+
+          <!-- tallos -->
+          <g fill="none" stroke="url(#gTallo)" stroke-linecap="round" stroke-dasharray="330">
+            <path class="tallo" style="animation-delay:0s" d="M150,314 C150,252 150,200 150,152" stroke-width="7"></path>
+            <path class="tallo" style="animation-delay:.13s" d="M150,300 C122,262 96,236 82,202" stroke-width="5.5"></path>
+            <path class="tallo" style="animation-delay:.26s" d="M150,300 C180,266 206,240 220,210" stroke-width="5.5"></path>
+          </g>
+
+          <!-- hojas -->
+          <path class="hoja" fill="url(#gHoja)" d="M148,250 C120,242 100,252 88,270 C112,284 138,276 148,250 Z"></path>
+          <path class="hoja hoja--d" fill="url(#gHoja)" d="M152,224 C180,214 202,222 214,240 C190,256 164,250 152,224 Z"></path>
+
+          <!-- cabezas: cada una girada un poco hacia otro lado.
+               Los pétalos y las semillas los arma el script, de a pocos. -->
+          <g transform="translate(82,202) rotate(-13) scale(.54,.6)">
+            <g class="flor flor--b" data-petalos="10" data-retraso="2050" data-semillas="62" data-radio="24">
+              <g class="corona">
+                <g class="anillo anillo--atras"></g>
+                <g class="anillo anillo--frente"></g>
+              </g>
+              <g class="disco">
+                <circle r="26" fill="url(#gCentro)"></circle>
+                <g class="semillero"></g>
+                <circle r="26" fill="url(#gDomo)"></circle>
+                <ellipse cx="-8" cy="-9" rx="8.5" ry="5.5" fill="url(#gLustre)" transform="rotate(-25)"></ellipse>
+              </g>
+            </g>
+          </g>
+
+          <g transform="translate(220,210) rotate(11) scale(.5,.56)">
+            <g class="flor flor--c" data-petalos="10" data-retraso="2400" data-semillas="62" data-radio="24">
+              <g class="corona">
+                <g class="anillo anillo--atras"></g>
+                <g class="anillo anillo--frente"></g>
+              </g>
+              <g class="disco">
+                <circle r="26" fill="url(#gCentro)"></circle>
+                <g class="semillero"></g>
+                <circle r="26" fill="url(#gDomo)"></circle>
+                <ellipse cx="-8" cy="-9" rx="8.5" ry="5.5" fill="url(#gLustre)" transform="rotate(-25)"></ellipse>
+              </g>
+            </g>
+          </g>
+
+          <g transform="translate(150,152) rotate(-3)">
+            <g class="flor flor--a" data-petalos="15" data-retraso="1050" data-semillas="115" data-radio="32">
+              <g class="corona">
+                <g class="anillo anillo--atras"></g>
+                <g class="anillo anillo--frente"></g>
+              </g>
+              <g class="disco">
+                <circle r="34" fill="url(#gCentro)"></circle>
+                <g class="semillero"></g>
+                <circle r="34" fill="url(#gDomo)"></circle>
+                <ellipse cx="-11" cy="-12" rx="11" ry="7" fill="url(#gLustre)" transform="rotate(-25)"></ellipse>
+                <circle r="34" fill="none" stroke="rgba(253,230,138,.22)" stroke-width="1.6"></circle>
+              </g>
+            </g>
+          </g>
+        </svg>
+      </div>
+    </div>
+
+    <p class="pista">Toca las flores ✨</p>
+  </section>
+
+  <!-- Carta ------------------------------------------------------ -->
+  <section class="correo" id="correo" aria-label="Carta desde Lima">
+    <button class="cta" id="btnCarta" type="button" aria-expanded="false" aria-controls="carta">
+      Abrir tu carta desde Lima <span class="brillo-cta">💌</span>
+    </button>
+
+    <div class="pliegue-sobre">
+      <div>
+        <div class="sobre">
+          <div class="cuerpo-sobre">
+            <p class="destino">Yessi<span>Chachapoyas · Amazonas</span></p>
+          </div>
+          <div class="estampilla" aria-hidden="true">🌻<small>LIMA</small></div>
+          <div class="solapa" aria-hidden="true"></div>
+          <div class="sello" aria-hidden="true">Y</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="pliegue-carta">
+      <div>
+        <article class="carta" id="carta">
+          <p class="encabezado">Bebé,</p>
+
+          <p>Hoy es el día de las flores amarillas y todo el mundo anda con ramos. Pensaba mandarte uno de verdad, pero averigüé y para cuando llegue a Chachapoyas ya no va a estar igual, así que no.</p>
+
+          <p>Entonces me puse a hacerte estas. Me demoró más de lo que pensaba, ni te imaginas. Ya sé que no es lo mismo, pero <strong>estas no se marchitan</strong> y prefiero que hoy te llegue algo mío a que no te llegue nada.</p>
+
+          <p>Dicen que las amarillas se regalan para que la persona se quede. No sé si será cierto, pero por si acaso ahí te van.</p>
+
+          <p>Además ya falta poquito para estar allá contigo. Para darte muchos besitos, cariñito y un montón de cosas más.</p>
+
+          <p>Te extraño, bebé. Te amo. Feliz 21. 💛</p>
+
+          <div class="remate" aria-hidden="true">
+            <i></i>
+            <svg viewBox="0 0 40 40">
+              <g transform="translate(20,20)" fill="#F59E0B">
+                <ellipse cy="-11" rx="3.2" ry="7.6"></ellipse>
+                <ellipse cy="-11" rx="3.2" ry="7.6" transform="rotate(45)"></ellipse>
+                <ellipse cy="-11" rx="3.2" ry="7.6" transform="rotate(90)"></ellipse>
+                <ellipse cy="-11" rx="3.2" ry="7.6" transform="rotate(135)"></ellipse>
+                <ellipse cy="-11" rx="3.2" ry="7.6" transform="rotate(180)"></ellipse>
+                <ellipse cy="-11" rx="3.2" ry="7.6" transform="rotate(225)"></ellipse>
+                <ellipse cy="-11" rx="3.2" ry="7.6" transform="rotate(270)"></ellipse>
+                <ellipse cy="-11" rx="3.2" ry="7.6" transform="rotate(315)"></ellipse>
+              </g>
+              <circle cx="20" cy="20" r="4.8" fill="#78350F"></circle>
+            </svg>
+            <i></i>
+          </div>
+
+          <p class="firma">Con todo mi cariño.<span>21 · 09</span></p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contador ---------------------------------------------------- -->
+  <section class="carino" aria-label="Contador de cariño">
+    <button class="btn-corazon" id="btnCorazon" type="button">
+      Toca si te gustaron tus flores 💛
+      <span class="marcador" id="marcador">0</span>
+    </button>
+    <div class="hilera" id="hilera" aria-hidden="true"></div>
+    <p class="nota" id="notaCorazon">Cada toque suelta una lluvia de corazones dorados.</p>
+  </section>
+
+</div>
+
+<script>
+(function(){
+  'use strict';
+
+  var calma = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* =========================================================
+     1. Lienzo: pétalos, destellos, corazones y mini flores
+     ========================================================= */
+  var lienzo = document.getElementById('lienzo');
+  var ctx = lienzo.getContext('2d');
+  var W = 0, H = 0, dpr = 1;
+  var particulas = [];
+
+  var AMARILLOS = ['#F59E0B','#FBBF24','#FCD34D','#FDE68A','#D97706'];
+  var DORADOS   = ['#F59E0B','#D97706','#FBBF24','#B45309'];
+
+  function medir(){
+    dpr = Math.min(window.devicePixelRatio || 1, 2);
+    W = window.innerWidth;
+    H = window.innerHeight;
+    lienzo.width  = Math.round(W * dpr);
+    lienzo.height = Math.round(H * dpr);
+    lienzo.style.width  = W + 'px';
+    lienzo.style.height = H + 'px';
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+  }
+
+  function azar(a, b){ return a + Math.random() * (b - a); }
+  function elegir(lista){ return lista[(Math.random() * lista.length) | 0]; }
+
+  function nuevoPetalo(repartido){
+    return {
+      tipo:'petalo',
+      x: azar(0, W),
+      y: repartido ? azar(-40, H) : azar(-120, -20),
+      r: azar(5, 11),
+      vy: calma ? azar(.10, .22) : azar(.32, .85),
+      vx: azar(-.16, .16),
+      giro: azar(0, Math.PI * 2),
+      vGiro: calma ? azar(-.004, .004) : azar(-.016, .016),
+      fase: azar(0, Math.PI * 2),
+      vaiven: azar(.25, 1.1),
+      color: elegir(AMARILLOS),
+      alfa: azar(.45, .85)
+    };
+  }
+
+  function nuevoBrillo(repartido){
+    return {
+      tipo:'brillo',
+      x: azar(0, W),
+      y: repartido ? azar(-40, H) : azar(-60, -10),
+      r: azar(.8, 2.4),
+      vy: calma ? azar(.05, .12) : azar(.12, .38),
+      vx: azar(-.08, .08),
+      fase: azar(0, Math.PI * 2),
+      pulso: azar(.02, .05),
+      alfa: azar(.3, .9)
+    };
+  }
+
+  /* flores enteras cayendo, no solo pétalos sueltos */
+  function nuevaFlorcita(repartido){
+    return {
+      tipo:'florcita',
+      x: azar(0, W),
+      y: repartido ? azar(-40, H) : azar(-150, -30),
+      r: azar(4.5, 9.5),
+      petalos: [5, 5, 6, 8][(Math.random() * 4) | 0],
+      vy: calma ? azar(.09, .18) : azar(.26, .68),
+      vx: azar(-.12, .12),
+      giro: azar(0, Math.PI * 2),
+      vGiro: calma ? azar(-.003, .003) : azar(-.012, .012),
+      fase: azar(0, Math.PI * 2),
+      vaiven: azar(.3, 1.2),
+      color: elegir(AMARILLOS),
+      alfa: azar(.55, .95)
+    };
+  }
+
+  function poblar(){
+    particulas = particulas.filter(function(p){
+      return p.tipo !== 'petalo' && p.tipo !== 'brillo' && p.tipo !== 'florcita';
+    });
+    var nPetalos = Math.round(Math.min(24, Math.max(12, W / 20)));
+    var nFlores  = Math.round(Math.min(15, Math.max(7, W / 32)));
+    var nBrillos = Math.round(Math.min(36, Math.max(16, W / 13)));
+    if (calma){
+      nPetalos = Math.round(nPetalos * .5);
+      nFlores  = Math.round(nFlores * .5);
+      nBrillos = Math.round(nBrillos * .5);
+    }
+    var i;
+    for (i = 0; i < nPetalos; i++) particulas.push(nuevoPetalo(true));
+    for (i = 0; i < nFlores;  i++) particulas.push(nuevaFlorcita(true));
+    for (i = 0; i < nBrillos; i++) particulas.push(nuevoBrillo(true));
+  }
+
+  /* --- formas --- */
+  function dibujarPetalo(p){
+    ctx.save();
+    ctx.translate(p.x, p.y);
+    ctx.rotate(p.giro);
+    ctx.globalAlpha = p.alfa;
+    ctx.fillStyle = p.color;
+    ctx.beginPath();
+    ctx.ellipse(0, 0, p.r * .46, p.r, 0, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.globalAlpha = p.alfa * .35;
+    ctx.strokeStyle = '#B45309';
+    ctx.lineWidth = .6;
+    ctx.beginPath();
+    ctx.moveTo(0, -p.r * .8);
+    ctx.lineTo(0, p.r * .8);
+    ctx.stroke();
+    ctx.restore();
+  }
+
+  function dibujarBrillo(x, y, r, alfa){
+    ctx.save();
+    ctx.globalAlpha = alfa;
+    ctx.fillStyle = '#FBBF24';
+    ctx.shadowColor = 'rgba(245,158,11,.9)';
+    ctx.shadowBlur = 8;
+    ctx.beginPath();
+    ctx.arc(x, y, r, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.restore();
+  }
+
+  function dibujarCorazon(x, y, s, color, alfa, giro){
+    ctx.save();
+    ctx.translate(x, y);
+    ctx.rotate(giro || 0);
+    ctx.scale(s, s);
+    ctx.globalAlpha = alfa;
+    ctx.fillStyle = color;
+    ctx.beginPath();
+    ctx.moveTo(0, -1);
+    ctx.bezierCurveTo(0, -2.3, -1.7, -3.3, -2.7, -2);
+    ctx.bezierCurveTo(-4.1, -.3, -3.2, 1.5, 0, 3.7);
+    ctx.bezierCurveTo(3.2, 1.5, 4.1, -.3, 2.7, -2);
+    ctx.bezierCurveTo(1.7, -3.3, 0, -2.3, 0, -1);
+    ctx.closePath();
+    ctx.fill();
+    ctx.restore();
+  }
+
+  function dibujarMiniFlor(x, y, s, color, alfa, giro, cuantos){
+    var n = cuantos || 5;
+    ctx.save();
+    ctx.translate(x, y);
+    ctx.rotate(giro || 0);
+    ctx.globalAlpha = alfa;
+    ctx.fillStyle = color;
+    for (var i = 0; i < n; i++){
+      ctx.save();
+      ctx.rotate((Math.PI * 2 / n) * i);
+      ctx.beginPath();
+      ctx.ellipse(0, -s * .9, s * .42, s * .9, 0, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.restore();
+    }
+    ctx.fillStyle = '#92400E';
+    ctx.beginPath();
+    ctx.arc(0, 0, s * .45, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.restore();
+  }
+
+  function recortar(){
+    var tope = 340;
+    if (particulas.length > tope) particulas.splice(0, particulas.length - tope);
+  }
+
+  /* --- estallido al tocar --- */
+  function estallar(x, y, cantidad){
+    var n = calma ? Math.round(cantidad * .45) : cantidad;
+    for (var i = 0; i < n; i++){
+      var angulo = azar(0, Math.PI * 2);
+      var fuerza = azar(.9, 4.2);
+      var esFlor = Math.random() < .42;
+      particulas.push({
+        tipo: esFlor ? 'miniflor' : 'chispa',
+        x: x, y: y,
+        vx: Math.cos(angulo) * fuerza,
+        vy: Math.sin(angulo) * fuerza - azar(.3, 1.4),
+        g: .045,
+        r: esFlor ? azar(3.5, 7.5) : azar(1.2, 3.2),
+        giro: azar(0, Math.PI * 2),
+        vGiro: azar(-.09, .09),
+        color: elegir(AMARILLOS),
+        vida: 0,
+        maxVida: azar(55, 110)
+      });
+    }
+    recortar();
+  }
+
+  /* --- lluvia de corazones dorados --- */
+  function lluviaCorazones(cantidad, origen){
+    var i;
+    for (i = 0; i < cantidad; i++){
+      particulas.push({
+        tipo:'corazon',
+        x: azar(W * .04, W * .96),
+        y: azar(-H * .3, -25),        /* cerquita del borde: entran al toque */
+        vx: azar(-.2, .2),
+        vy: calma ? azar(.6, 1.2) : azar(1.5, 3.3),
+        r: azar(3.2, 6.6),
+        giro: azar(-.4, .4),
+        vGiro: azar(-.015, .015),
+        fase: azar(0, Math.PI * 2),
+        vaiven: azar(.3, 1),
+        color: elegir(DORADOS),
+        vida: 0,
+        maxVida: 520
+      });
+    }
+    if (origen){
+      for (i = 0; i < 18; i++){
+        var a = azar(-Math.PI * .9, -Math.PI * .1);
+        var f = azar(2.4, 6.5);
+        particulas.push({
+          tipo:'corazon',
+          x: origen.x, y: origen.y,
+          vx: Math.cos(a) * f,
+          vy: Math.sin(a) * f,
+          g: .075,
+          r: azar(2.8, 5.6),
+          giro: azar(-.5, .5),
+          vGiro: azar(-.06, .06),
+          color: elegir(DORADOS),
+          vida: 0,
+          maxVida: azar(70, 130)
+        });
+      }
+    }
+    recortar();
+  }
+
+  /* --- bucle --- */
+  var previo = 0;
+  var corriendo = true;
+  function bucle(ahora){
+    var dt = previo ? Math.min(34, ahora - previo) : 16;
+    previo = ahora;
+    var k = dt / 16.67;
+
+    ctx.clearRect(0, 0, W, H);
+
+    for (var i = particulas.length - 1; i >= 0; i--){
+      var p = particulas[i];
+
+      if (p.tipo === 'petalo'){
+        p.fase += .018 * k;
+        p.y += p.vy * k;
+        p.x += (p.vx + Math.sin(p.fase) * p.vaiven * .35) * k;
+        p.giro += p.vGiro * k;
+        if (p.y - p.r > H){ particulas[i] = nuevoPetalo(false); continue; }
+        if (p.x < -40) p.x = W + 30;
+        if (p.x > W + 40) p.x = -30;
+        dibujarPetalo(p);
+
+      } else if (p.tipo === 'florcita'){
+        p.fase += .015 * k;
+        p.y += p.vy * k;
+        p.x += (p.vx + Math.sin(p.fase) * p.vaiven * .3) * k;
+        p.giro += p.vGiro * k;
+        if (p.y - p.r * 2 > H){ particulas[i] = nuevaFlorcita(false); continue; }
+        if (p.x < -40) p.x = W + 30;
+        if (p.x > W + 40) p.x = -30;
+        dibujarMiniFlor(p.x, p.y, p.r, p.color, p.alfa, p.giro, p.petalos);
+
+      } else if (p.tipo === 'brillo'){
+        p.fase += p.pulso * k;
+        p.y += p.vy * k;
+        p.x += p.vx * k;
+        if (p.y - 6 > H){ particulas[i] = nuevoBrillo(false); continue; }
+        dibujarBrillo(p.x, p.y, p.r, p.alfa * (.35 + Math.abs(Math.sin(p.fase)) * .65));
+
+      } else {
+        p.vida += k;
+        var restante = 1 - p.vida / p.maxVida;
+        if (restante <= 0){ particulas.splice(i, 1); continue; }
+
+        if (p.g) p.vy += p.g * k;
+        if (p.vaiven){ p.fase += .03 * k; p.x += Math.sin(p.fase) * p.vaiven * .5 * k; }
+        p.x += p.vx * k;
+        p.y += p.vy * k;
+        p.giro += p.vGiro * k;
+
+        if (p.y - 20 > H){ particulas.splice(i, 1); continue; }
+
+        var alfa = Math.min(1, restante * 2.4);
+        if (p.tipo === 'corazon')       dibujarCorazon(p.x, p.y, p.r, p.color, alfa, p.giro);
+        else if (p.tipo === 'miniflor') dibujarMiniFlor(p.x, p.y, p.r, p.color, alfa, p.giro);
+        else                            dibujarBrillo(p.x, p.y, p.r, alfa);
+      }
+    }
+
+    moverInclinacion(k);
+    if (corriendo) requestAnimationFrame(bucle);
+  }
+
+  medir();
+  poblar();
+  requestAnimationFrame(bucle);
+
+  /* si deja la página en segundo plano, paramos: no gastamos batería */
+  document.addEventListener('visibilitychange', function(){
+    if (document.hidden){
+      corriendo = false;
+    } else if (!corriendo){
+      corriendo = true;
+      previo = 0;
+      requestAnimationFrame(bucle);
+    }
+  });
+
+  var temporizador;
+  window.addEventListener('resize', function(){
+    clearTimeout(temporizador);
+    temporizador = setTimeout(function(){ medir(); poblar(); }, 180);
+  });
+
+  /* =========================================================
+     2. El ramo: pétalos y semillas en espiral áurea (137,5°),
+        igual que en un girasol de verdad.
+     ========================================================= */
+  var SVGNS = 'http://www.w3.org/2000/svg';
+  var XLINK = 'http://www.w3.org/1999/xlink';
+  var ANGULO_AUREO = Math.PI * (3 - Math.sqrt(5));
+  var TONOS_SEMILLA = ['#8A4A0C', '#A16207', '#6B3410'];
+
+  var PASO_PETALO = 45;   /* lo que tarda en asomar el siguiente pétalo */
+
+  Array.prototype.forEach.call(document.querySelectorAll('.flor'), function(flor){
+    var atras = flor.querySelector('.anillo--atras');
+    var frente = flor.querySelector('.anillo--frente');
+    var disco = flor.querySelector('.disco');
+    var semillero = flor.querySelector('.semillero');
+    var total = parseInt(flor.getAttribute('data-petalos'), 10) || 10;
+    var retraso = parseInt(flor.getAttribute('data-retraso'), 10) || 0;
+    var semillas = parseInt(flor.getAttribute('data-semillas'), 10) || 62;
+    var radioCentro = parseInt(flor.getAttribute('data-radio'), 10) || 24;
+    var indice = 0;
+
+    /* el disco aparece primero, como un botón cerrado */
+    disco.style.animationDelay = Math.max(0, retraso - 150) + 'ms';
+
+    function sembrarPetalos(destino, cuantos, escala, desfase){
+      for (var i = 0; i < cuantos; i++){
+        var giro = document.createElementNS(SVGNS, 'g');
+        giro.setAttribute('transform',
+          'rotate(' + (desfase + (360 / cuantos) * i).toFixed(2) + ') scale(' + escala + ')');
+
+        var uso = document.createElementNS(SVGNS, 'use');
+        uso.setAttribute('href', '#petalo3d');
+        uso.setAttributeNS(XLINK, 'xlink:href', '#petalo3d');
+        uso.setAttribute('class', 'petalo');
+        uso.style.animationDelay = (retraso + indice * PASO_PETALO) + 'ms';
+        indice++;
+
+        giro.appendChild(uso);
+        destino.appendChild(giro);
+      }
+    }
+
+    /* primero la capa de atrás, girada media posición, y luego la de adelante */
+    sembrarPetalos(atras, total, .8, 360 / total / 2);
+    sembrarPetalos(frente, total, 1, 0);
+
+    var iniSemillas = retraso + 350;
+    for (var s = 0; s < semillas; s++){
+      var radio = radioCentro * Math.sqrt(s / semillas);
+      var ang = s * ANGULO_AUREO;
+      var punto = document.createElementNS(SVGNS, 'circle');
+      punto.setAttribute('cx', (Math.cos(ang) * radio).toFixed(2));
+      punto.setAttribute('cy', (Math.sin(ang) * radio).toFixed(2));
+      punto.setAttribute('r', (1.05 + (s / semillas) * 1.15).toFixed(2));
+      punto.setAttribute('fill', TONOS_SEMILLA[s % 3]);
+      punto.setAttribute('class', 'semilla');
+      punto.style.animationDelay = (iniSemillas + s * 7) + 'ms';
+      semillero.appendChild(punto);
+    }
+  });
+
+  /* =========================================================
+     2b. Inclinación 3D: el ramo sigue al dedo y, si nadie lo
+         toca, se mece solo (la animación CSS 'vaiven' suma
+         estos grados a su propio balanceo).
+     ========================================================= */
+  var inclinacion = document.getElementById('inclinacion');
+  var metaX = 0, metaY = 0, giroX = 0, giroY = 0, ultimoGiro = '';
+
+  function moverInclinacion(k){
+    if (!inclinacion || calma) return;
+    giroX += (metaX - giroX) * Math.min(1, .09 * k);
+    giroY += (metaY - giroY) * Math.min(1, .09 * k);
+    var marca = giroX.toFixed(1) + '/' + giroY.toFixed(1);
+    if (marca === ultimoGiro) return;      /* nada que repintar */
+    ultimoGiro = marca;
+    inclinacion.style.setProperty('--rx', giroX.toFixed(2) + 'deg');
+    inclinacion.style.setProperty('--ry', giroY.toFixed(2) + 'deg');
+  }
+
+  if (!calma){
+    document.addEventListener('pointermove', function(e){
+      var caja = inclinacion.getBoundingClientRect();
+      var cx = caja.left + caja.width / 2;
+      var cy = caja.top + caja.height / 2;
+      metaY = Math.max(-1, Math.min(1, (e.clientX - cx) / (window.innerWidth * .5))) * 10;
+      metaX = Math.max(-1, Math.min(1, (cy - e.clientY) / (window.innerHeight * .5))) * 8;
+    }, {passive:true});
+
+    document.addEventListener('pointerup', function(){ metaX = 0; metaY = 0; }, {passive:true});
+    document.addEventListener('pointerleave', function(){ metaX = 0; metaY = 0; }, {passive:true});
+  }
+
+  /* =========================================================
+     3. Tocar la pantalla: destellos y mini flores
+     ========================================================= */
+  var escena = document.getElementById('escena');
+
+  document.addEventListener('pointerdown', function(e){
+    var enRamo = escena.contains(e.target);
+    estallar(e.clientX, e.clientY, enRamo ? 26 : 13);
+    if (enRamo){
+      escena.classList.remove('sacudir');
+      void escena.offsetWidth;
+      escena.classList.add('sacudir');
+      tintinear();
+    }
+  }, {passive:true});
+
+  escena.addEventListener('animationend', function(e){
+    if (e.animationName === 'sacudida') escena.classList.remove('sacudir');
+  });
+
+  escena.addEventListener('keydown', function(e){
+    if (e.key === 'Enter' || e.key === ' '){
+      e.preventDefault();
+      var caja = escena.getBoundingClientRect();
+      estallar(caja.left + caja.width / 2, caja.top + caja.height * .4, 26);
+      tintinear();
+    }
+  });
+
+  /* =========================================================
+     4. El sobre y la carta
+     ========================================================= */
+  var correo = document.getElementById('correo');
+  var btnCarta = document.getElementById('btnCarta');
+
+  btnCarta.addEventListener('click', function(){
+    var abierta = correo.classList.toggle('abierta');
+    btnCarta.setAttribute('aria-expanded', abierta ? 'true' : 'false');
+    btnCarta.innerHTML = abierta
+      ? 'Guardar la carta <span class="brillo-cta">🤍</span>'
+      : 'Abrir tu carta desde Lima <span class="brillo-cta">💌</span>';
+
+    if (abierta){
+      var caja = btnCarta.getBoundingClientRect();
+      estallar(caja.left + caja.width / 2, caja.bottom, 34);
+      setTimeout(function(){
+        document.getElementById('carta').scrollIntoView({
+          behavior: calma ? 'auto' : 'smooth',
+          block: 'center'
+        });
+      }, 1100);
+    }
+  });
+
+  /* =========================================================
+     5. Contador de corazones
+     ========================================================= */
+  var btnCorazon = document.getElementById('btnCorazon');
+  var marcador = document.getElementById('marcador');
+  var notaCorazon = document.getElementById('notaCorazon');
+  var hilera = document.getElementById('hilera');
+  var CLAVE = 'yessi-flores-amarillas';
+  var TOPE_HILERA = 14;
+  var cuenta = 0;
+
+  /* los corazones que ya juntó se quedan a la vista */
+  function pintarHilera(n, animar){
+    hilera.textContent = '';
+    var visibles = Math.min(n, TOPE_HILERA);
+    var ultimo = null, i, c;
+    for (i = 0; i < visibles; i++){
+      c = document.createElement('span');
+      c.textContent = '💛';
+      c.style.animation = 'none';
+      hilera.appendChild(c);
+      ultimo = c;
+    }
+    if (n > TOPE_HILERA){
+      c = document.createElement('span');
+      c.className = 'mas';
+      c.textContent = '+' + (n - TOPE_HILERA);
+      c.style.animation = 'none';
+      hilera.appendChild(c);
+      ultimo = c;
+    }
+    if (animar && ultimo) ultimo.style.animation = '';
+  }
+
+  try {
+    var guardado = parseInt(window.localStorage.getItem(CLAVE), 10);
+    if (!isNaN(guardado) && guardado > 0) cuenta = guardado;
+  } catch (err) { /* sin almacenamiento: empezamos en cero */ }
+  marcador.textContent = cuenta;
+  pintarHilera(cuenta, false);
+
+  var MENSAJES = [
+    'Otro pedacito de Lima que llega a Chachapoyas.',
+    'Mil doscientos kilómetros y siguen llegando.',
+    'Estas flores ya no se marchitan, bebé. 🌻',
+    'Guárdalos todos, son tuyos. 💛'
+  ];
+
+  btnCorazon.addEventListener('click', function(){
+    cuenta++;
+    marcador.textContent = cuenta;
+    pintarHilera(cuenta, true);
+    try { window.localStorage.setItem(CLAVE, String(cuenta)); } catch (err) {}
+
+    btnCorazon.classList.remove('palpita');
+    void btnCorazon.offsetWidth;
+    btnCorazon.classList.add('palpita');
+
+    /* tres tandas seguidas: se siente lluvia y no un solo estallido */
+    var caja = btnCorazon.getBoundingClientRect();
+    var tanda = calma ? 8 : 22;
+    lluviaCorazones(tanda, {x: caja.left + caja.width / 2, y: caja.top + caja.height / 2});
+    setTimeout(function(){ lluviaCorazones(tanda, null); }, 260);
+    setTimeout(function(){ lluviaCorazones(Math.round(tanda * .7), null); }, 560);
+
+    notaCorazon.textContent = MENSAJES[(cuenta - 1) % MENSAJES.length];
+    tintinear();
+  });
+
+  btnCorazon.addEventListener('animationend', function(){
+    btnCorazon.classList.remove('palpita');
+  });
+
+  /* =========================================================
+     6. Música ambiental
+     ---------------------------------------------------------
+     La melodía se genera con la Web Audio API, así que no
+     depende de ningún archivo externo y suena aunque no haya
+     internet. ¿Prefieres tu propia canción? Pon la URL del
+     mp3 en PISTA_PROPIA y la página la usará en su lugar.
+     ========================================================= */
+  var PISTA_PROPIA = 'musica.mp3';   /* el archivo que va junto a este index.html */
+  var VOLUMEN = 0.5;                 /* volumen inicial: 50 % */
+
+  var btnSonido = document.getElementById('btnSonido');
+  var ondas = document.getElementById('ondas');
+  var mudo = document.getElementById('mudo');
+  var sonando = true;   /* viene puesta por defecto */
+
+  var audioPropio = null;
+  var fundido = null;
+
+  if (PISTA_PROPIA){
+    audioPropio = new Audio(PISTA_PROPIA);
+    audioPropio.loop = true;
+    audioPropio.preload = 'auto';
+    audioPropio.volume = 0;
+    /* si el archivo no está donde debería, no dejamos la página muda:
+       se cae de pie a la melodía que va dentro del propio código */
+    audioPropio.addEventListener('error', function(){
+      audioPropio = null;
+      if (sonando) iniciarMusica();
+    });
+  }
+
+  /* la canción entra y sale despacio, no de golpe */
+  function fundir(destino, alTerminar){
+    if (fundido){ clearInterval(fundido); fundido = null; }
+    fundido = setInterval(function(){
+      if (!audioPropio){ clearInterval(fundido); fundido = null; return; }
+      var salto = destino - audioPropio.volume;
+      if (Math.abs(salto) < .02){
+        audioPropio.volume = destino;
+        clearInterval(fundido);
+        fundido = null;
+        if (alTerminar) alTerminar();
+        return;
+      }
+      audioPropio.volume = Math.max(0, Math.min(1, audioPropio.volume + salto * .14));
+    }, 40);
+  }
+
+  var ac = null, maestro = null, bus = null, eco = null, reloj = null;
+  var siguiente = 0, paso = 0;
+
+  /* --- la canción -------------------------------------------
+     Melodía propia en Fa mayor, ocho compases que dan la vuelta:
+     una primera frase que pregunta y una segunda que responde
+     más arriba. Acordes Fa · Do · Rem · Sib debajo. --------- */
+  var CORCHEA = 0.3;    /* segundos por nota corta */
+  var COMPAS = 8;       /* corcheas por compás */
+
+  var ACORDES = [
+    {raiz:41, notas:[53,57,60]},   /* Fa   */
+    {raiz:36, notas:[52,55,60]},   /* Do   */
+    {raiz:38, notas:[53,57,62]},   /* Rem  */
+    {raiz:34, notas:[53,58,62]}    /* Sib  */
+  ];
+
+  var FRASE = [
+    /* la pregunta */
+    69,72,77,72, 0,69,72,0,
+    67,72,76,72, 0,67,71,0,
+    69,74,77,74, 0,69,74,0,
+    65,70,74,77, 0,74,72,0,
+    /* la respuesta, más alto */
+    72,77,81,77, 76,77,0,0,
+    71,76,79,76, 74,0,0,0,
+    69,74,77,81, 79,77,0,0,
+    74,77,72,69, 65,0,0,0
+  ];
+
+  var CHISPAS = [77, 81, 84, 86, 89];   /* para el tintineo al tocar */
+
+  function hz(midi){ return 440 * Math.pow(2, (midi - 69) / 12); }
+
+  function crearAudio(){
+    if (ac) return;
+    var AC = window.AudioContext || window.webkitAudioContext;
+    if (!AC) return;
+    ac = new AC();
+
+    maestro = ac.createGain();
+    maestro.gain.value = 0.0001;
+    maestro.connect(ac.destination);
+
+    bus = ac.createBiquadFilter();
+    bus.type = 'lowpass';
+    bus.frequency.value = 2200;
+    bus.connect(maestro);
+
+    eco = ac.createDelay(1);
+    eco.delayTime.value = .36;
+    var realim = ac.createGain();
+    realim.gain.value = .3;
+    var retorno = ac.createGain();
+    retorno.gain.value = .42;
+    eco.connect(realim);
+    realim.connect(eco);
+    eco.connect(retorno);
+    retorno.connect(bus);
+  }
+
+  function tocar(midi, cuando, duracion, volumen, tipo){
+    if (!ac) return;
+    var osc = ac.createOscillator();
+    var g = ac.createGain();
+    osc.type = tipo || 'triangle';
+    osc.frequency.value = hz(midi);
+    g.gain.setValueAtTime(0.0001, cuando);
+    g.gain.exponentialRampToValueAtTime(volumen, cuando + .03);
+    g.gain.exponentialRampToValueAtTime(0.0001, cuando + duracion);
+    osc.connect(g);
+    g.connect(bus);
+    g.connect(eco);
+    osc.start(cuando);
+    osc.stop(cuando + duracion + .05);
+  }
+
+  function programar(){
+    if (!ac) return;
+    while (siguiente < ac.currentTime + .8){
+      var posicion = paso % FRASE.length;
+      var compas = (posicion / COMPAS) | 0;
+      var acorde = ACORDES[compas % ACORDES.length];
+      var i;
+
+      /* al entrar cada compás: acorde sostenido y nota grave */
+      if (posicion % COMPAS === 0){
+        for (i = 0; i < acorde.notas.length; i++){
+          tocar(acorde.notas[i], siguiente, 2.6, .032, 'sine');
+        }
+        tocar(acorde.raiz, siguiente, 1.5, .065, 'sine');
+      } else if (posicion % COMPAS === 4){
+        tocar(acorde.raiz + 7, siguiente, 1.1, .04, 'sine');
+      }
+
+      /* la melodía */
+      var nota = FRASE[posicion];
+      if (nota){
+        tocar(nota, siguiente, 1.35, .085, 'triangle');
+        tocar(nota + 12, siguiente, .85, .02, 'sine');
+      }
+
+      siguiente += CORCHEA;
+      paso++;
+    }
+  }
+
+  function comenzarSecuencia(){
+    if (!ac || !sonando || ac.state !== 'running') return;
+    if (reloj){ clearInterval(reloj); reloj = null; }
+    siguiente = ac.currentTime + .12;
+    paso = 0;
+    maestro.gain.cancelScheduledValues(ac.currentTime);
+    maestro.gain.setValueAtTime(Math.max(0.0001, maestro.gain.value), ac.currentTime);
+    maestro.gain.linearRampToValueAtTime(VOLUMEN, ac.currentTime + 1.6);
+    programar();
+    reloj = setInterval(programar, 220);
+  }
+
+  function iniciarMusica(){
+    if (audioPropio){
+      audioPropio.volume = 0;
+      var intento = audioPropio.play();
+      /* si el navegador aún no lo permite, esperamos al primer toque */
+      if (intento && intento.then) intento.then(function(){ fundir(VOLUMEN); }).catch(function(){});
+      else fundir(VOLUMEN);
+      return;
+    }
+    crearAudio();
+    if (!ac) return;
+    if (ac.state === 'running'){ comenzarSecuencia(); return; }
+    /* el navegador la tiene en pausa hasta que alguien toque la pantalla */
+    var promesa = ac.resume();
+    if (promesa && promesa.then) promesa.then(comenzarSecuencia).catch(function(){});
+    else comenzarSecuencia();
+  }
+
+  function estaSonando(){
+    if (!sonando) return false;
+    if (audioPropio) return !audioPropio.paused;
+    return !!ac && ac.state === 'running' && !!reloj;
+  }
+
+  function pararMusica(){
+    if (audioPropio){
+      fundir(0, function(){ if (audioPropio) audioPropio.pause(); });
+      return;
+    }
+    if (!ac) return;
+    maestro.gain.cancelScheduledValues(ac.currentTime);
+    maestro.gain.setValueAtTime(Math.max(0.0001, maestro.gain.value), ac.currentTime);
+    maestro.gain.linearRampToValueAtTime(0.0001, ac.currentTime + .8);
+    clearInterval(reloj);
+    reloj = null;
+  }
+
+  /* un tintineo al tocar las flores, sólo si la música está puesta */
+  function tintinear(){
+    if (audioPropio || !ac || ac.state !== 'running' || !sonando) return;
+    tocar(CHISPAS[(Math.random() * CHISPAS.length) | 0], ac.currentTime + .01, 1.1, .055, 'sine');
+  }
+
+  function pintarBoton(){
+    btnSonido.setAttribute('aria-pressed', sonando ? 'true' : 'false');
+    btnSonido.setAttribute('aria-label', sonando ? 'Pausar música de fondo' : 'Reproducir música de fondo');
+    ondas.style.display = sonando ? '' : 'none';
+    mudo.style.display = sonando ? 'none' : '';
+  }
+
+  btnSonido.addEventListener('click', function(){
+    /* si el botón dice "puesta" pero el navegador aún no la soltó,
+       este clic la arranca en vez de apagarla */
+    if (estaSonando()){
+      sonando = false;
+      pararMusica();
+    } else {
+      sonando = true;
+      iniciarMusica();
+    }
+    pintarBoton();
+  });
+
+  pintarBoton();
+  iniciarMusica();
+
+  /* Casi todos los navegadores móviles no dejan sonar nada hasta
+     el primer toque. Aprovechamos ese primer toque, sea donde sea. */
+  function primerToque(e){
+    if (e && e.target && e.target.closest && e.target.closest('#btnSonido')) {
+      soltarPrimerToque();
+      return;   /* que decida el clic del botón */
+    }
+    if (sonando) iniciarMusica();
+    soltarPrimerToque();
+  }
+  function soltarPrimerToque(){
+    document.removeEventListener('pointerdown', primerToque);
+    document.removeEventListener('keydown', primerToque);
+  }
+  document.addEventListener('pointerdown', primerToque);
+  document.addEventListener('keydown', primerToque);
+})();
+</script>
