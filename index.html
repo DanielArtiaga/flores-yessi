@@ -1394,6 +1394,7 @@ h1 .girasol-emoji{display:inline-block;animation:girar 11s linear infinite}
   var ondas = document.getElementById('ondas');
   var mudo = document.getElementById('mudo');
   var sonando = true;   /* viene puesta por defecto */
+  var yaSuena = false;  /* pasa a true recién cuando de verdad se oye */
 
   var audioPropio = null;
   var fundido = null;
@@ -1537,7 +1538,8 @@ h1 .girasol-emoji{display:inline-block;animation:girar 11s linear infinite}
 
   function comenzarSecuencia(){
     if (!ac || !sonando || ac.state !== 'running') return;
-    if (reloj){ clearInterval(reloj); reloj = null; }
+    if (reloj) return;          /* ya está sonando: no la reiniciamos */
+    soltarArranque();
     siguiente = ac.currentTime + .12;
     paso = 0;
     maestro.gain.cancelScheduledValues(ac.currentTime);
@@ -1613,21 +1615,33 @@ h1 .girasol-emoji{display:inline-block;animation:girar 11s linear infinite}
   pintarBoton();
   iniciarMusica();
 
-  /* Casi todos los navegadores móviles no dejan sonar nada hasta
-     el primer toque. Aprovechamos ese primer toque, sea donde sea. */
-  function primerToque(e){
-    if (e && e.target && e.target.closest && e.target.closest('#btnSonido')) {
-      soltarPrimerToque();
-      return;   /* que decida el clic del botón */
+  /* Ningún navegador de celular deja sonar nada hasta que la persona
+     toca la pantalla, y cada uno acepta un gesto distinto: el iPhone
+     solo hace caso a 'touchend' y 'click'. Así que escuchamos varios
+     y seguimos intentando en cada toque hasta que de verdad suene. */
+  var GESTOS = ['pointerdown', 'touchend', 'click', 'keydown'];
+
+  function intentarArranque(e){
+    if (yaSuena || !sonando) return;
+    /* si el toque fue en el botón del sonido, que decida él */
+    if (e && e.target && e.target.closest && e.target.closest('#btnSonido')) return;
+    if (audioPropio && !audioPropio.paused){ soltarArranque(); return; }
+    iniciarMusica();
+  }
+
+  function soltarArranque(){
+    if (yaSuena) return;
+    yaSuena = true;
+    for (var i = 0; i < GESTOS.length; i++){
+      document.removeEventListener(GESTOS[i], intentarArranque, true);
     }
-    if (sonando) iniciarMusica();
-    soltarPrimerToque();
   }
-  function soltarPrimerToque(){
-    document.removeEventListener('pointerdown', primerToque);
-    document.removeEventListener('keydown', primerToque);
+
+  for (var gi = 0; gi < GESTOS.length; gi++){
+    document.addEventListener(GESTOS[gi], intentarArranque, true);
   }
-  document.addEventListener('pointerdown', primerToque);
-  document.addEventListener('keydown', primerToque);
+
+  /* cuando el audio confirme que está sonando, dejamos de insistir */
+  if (audioPropio) audioPropio.addEventListener('playing', soltarArranque);
 })();
 </script>
